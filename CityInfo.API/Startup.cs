@@ -16,7 +16,7 @@ namespace CityInfo.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
+            services.AddMvc();
             //    .AddJsonOptions(o=> {
             //    if (o.SerializerSettings.ContractResolver != null) {
             //        var custResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
