@@ -13,13 +13,13 @@ namespace CityInfo.API.Controllers
         [HttpGet("")]
         public IActionResult GetCities()
         {
-            return Ok(CitiInMemory.Current.Cities);
+            return Ok(CitiesDataStore.Current.Cities);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetCities(int id)
         {
-            var city = CitiInMemory.Current.Cities.FirstOrDefault(c => c.Id == id);
+            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
             if (city == null)
             {
                 return NotFound();
