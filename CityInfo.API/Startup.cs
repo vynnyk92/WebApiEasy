@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using NLog.Extensions.Logging;
+using CityInfo.API.Repositories;
 
 namespace CityInfo.API
 {
@@ -49,6 +50,7 @@ namespace CityInfo.API
             services.AddTransient<IMailService, CloudMailService>();
             var conStr = configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<CityInfoContext>(o=>o.UseSqlServer(conStr));
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +70,7 @@ namespace CityInfo.API
             app.UseStatusCodePages();
 
             cityInfoContext.EnsureSeedDataForDB();
+            AutoMapperExtensions.ConfigureAutomapper();
             app.UseMvc();
 
 
